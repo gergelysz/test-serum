@@ -1,3 +1,5 @@
+const { X } = require('lucide-react');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	darkMode: ['class'],
@@ -76,6 +78,13 @@ module.exports = {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 			},
+		},
+		screens: {
+			xs: '375px',
+			sm: '640px',
+			md: '768px',
+			lg: '1024px',
+			xl: '1280px',
 		},
 	},
 	plugins: [require('tailwindcss-animate')],
