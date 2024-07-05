@@ -9,20 +9,76 @@ import aboutUsImage from '../../public/teglalap/3.png';
 import createYourRitualImage from '../../public/teglalap/2.png';
 import { CustomButton, TestButton } from '@/components/cust-button';
 import SocialIcons from '@/components/social-icons';
+import QuestionCarousel from '@/components/question-carousel';
+import ResponsiveImage from '@/components/responsive-image';
 
 export default function Home() {
-	const answers = ['Acne prone skin', 'Sensitive skin', 'Dry skin', 'Normal skin', 'Oily skin', 'Mature skin'];
+	const data = [
+		{
+			question: 'What is your skin type?',
+			answers: ['Acne prone skin', 'Sensitive skin', 'Dry skin', 'Normal skin', 'Oily skin', 'Mature skin'],
+			multipleAnswersAllowed: true,
+		},
+		{
+			question: 'What are your main skin concerns?',
+			answers: ['Acne and breakouts', 'Dryness and flaking', 'Wrinkles and signs of aging', 'Pigmentation and discoloration', 'Sensitivity and redness', 'No specific concern'],
+			multipleAnswersAllowed: true,
+		},
+		{
+			question: 'Which age group do you belong to?',
+			answers: ['Under 18', '18-24 years', '25-34 years', '35-44 years', '45-54 years', '55 years and older'],
+			multipleAnswersAllowed: false,
+		},
+		{
+			question: 'How often do you follow a skincare routine?',
+			answers: ['Twice a day (morning and night)', 'Once a day (morning or night)', 'A few times a week', 'Occasionally', 'Never', 'It varies'],
+			multipleAnswersAllowed: false,
+		},
+		{
+			question: 'How often do you exercise or sweat intensely?',
+			answers: ['Daily', '3-5 times a week', '1-2 times a week', 'A few times a month', 'Never', 'It varies'],
+			multipleAnswersAllowed: false,
+		},
+		{
+			question: 'How much attention do you pay to healthy eating?',
+			answers: ['Very attentive', 'Attentive, but with occasional indulgencies', 'Generally try to be attentive', 'Rarely attentive', 'Not at all attentive', 'Not sure'],
+			multipleAnswersAllowed: false,
+		},
+		{
+			question: 'How many hours do you sleep on average per night?',
+			answers: ['More than 8 hours', '7-8 hours', '6-7 hours', '5-6 hours', 'Less than 5 hours', 'It varies'],
+			multipleAnswersAllowed: false,
+		},
+		{
+			question: 'How much do you spend on skincare products per month?',
+			answers: ['Less than 100 RON / 20 EUR', '100-200 RON / 20-40 EUR', '200-400 RON / 40-80 EUR', '400-600 RON / 80-120 EUR', 'More than 600 RON / 120 EUR', 'Not sure / no specific budget'],
+			multipleAnswersAllowed: false,
+		},
+		{
+			question: 'How often do you use sunscreen?',
+			answers: ['Every day', 'Only in summer', 'Only on sunny days', 'Occasionally', 'Never', 'Not sure / do not use'],
+			multipleAnswersAllowed: false,
+		},
+		{
+			question: 'Which type of skincare products do you prefer?',
+			answers: ['Natural / organic', 'Dermatologically tested', 'Luxury brands', 'Pharmacy brands', 'Best value for money', "Doesn't matter, as long as it's effective"],
+			multipleAnswersAllowed: true,
+		},
+	];
 
 	return (
 		<div>
 			{/* First Part */}
-			<div className='min-h-fit min-w-full flex'>
-				<div className='w-3/6 p-0'>
-					<Image src={homeImage} alt='Home page image' width={0} height={0} sizes='100vw' />
+			<div className='min-h-full min-w-full flex flex-row'>
+				<div className='w-1/2 xs:w-full lg:w-1/2 p-0'>
+					<ResponsiveImage src={homeImage} alt='Home page image'>
+						<p className='text-7xl xs:text-7xl sm:text-7xl md:text-7xl lg:text-7xl font-bold m-3'>Rítusom</p>
+						<p className='text-3xl xs:text-xl sm:text-2xl md:text-3xl lg:text-3xl'>Your personalized skincare ritual</p>
+					</ResponsiveImage>
 				</div>
-				<div className='w-3/6 p-4'>
+				<div className='w-1/2 xs:w-1/6 sm:w-1/6 lg:w-1/2 p-4 xs:p-0 md:p-4'>
 					<NavigatorBurger />
-					<div className='h-full flex flex-col items-center justify-center text-center'>
+					<div className='h-full flex flex-col items-center justify-center text-center xs:invisible lg:visible'>
 						<p className='text-7xl xs:text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-bold m-3'>Rítusom</p>
 						<p className='text-3xl xs:text-xs sm:text-sm md:text-xl lg:text-3xl'>Your personalized skincare ritual</p>
 					</div>
@@ -31,7 +87,7 @@ export default function Home() {
 
 			{/* Second part */}
 
-			<div className='min-h-screen flex flex-col items-center justify-center space-y-8 xs:space-y-1 sm:space-y-2 md:space-y-5 lg:space-y-8'>
+			<div className='min-h-screen flex flex-col items-center justify-center space-y-8 xs:space-y-1 sm:space-y-2 md:space-y-5 lg:space-y-8 my-24 py-2'>
 				{/* First div with centered h1 */}
 				<div className='flex items-center justify-center h-64 sm:h-32 md:h-44 lg:h-64 w-full'>
 					<p className='m-10 xs:m-2 sm:m-5 md:m-10 lg:m-10 text-5xl xs:text-xl sm:text-2xl md:text-3xl lg:text-5xl tracking-tight text-center'>Sticking to a skincare routine has never been easier!</p>
@@ -90,22 +146,15 @@ export default function Home() {
 			<div className='flex flex-col items-center justify-center space-y-7 bg-serums bg-cover bg-center'>
 				<p className='text-4xl xs:text-base sm:text-lg md:text-2xl lg:text-4xl'>Take our test and create your ritual!</p>
 				<p className='text-4xl xs:text-base sm:text-lg md:text-2xl lg:text-4xl bg-lime-800/75 text-white font-bold p-3 pl-7 pr-7'>About you</p>
-				<p className='text-3xl xs:text-lg sm:text-sm md:text-xl lg:text-4xl'>Please describe your skin type</p>
-				<div className='min-h-fit flex items-center justify-center'>
-					<div className='grid grid-cols-2 gap-4 xs:gap-0.5 sm:gap-1 md:gap-2 lg:gap-4 p-8 sm:p-1 md:p-4 lg:p-8'>
-						{answers.map((answer, index) => (
-							<div key={index} className='m-4 p-4 xs:p-1 sm:p-2 md:p-3 lg:p-4'>
-								<TestButton text={answer} />
-							</div>
-						))}
-					</div>
+				<div className='relative min-h-fit min-w-full flex flex-col items-center justify-center'>
+					<QuestionCarousel data={data} />
 				</div>
 			</div>
 
 			{/* Fifth part */}
-			<div className='min-h-fit min-w-full flex'>
-				<div className='w-3/6 p-0'>
-					<div className='min-h-full flex items-center justify-center p-24'>
+			<div className='min-h-fit min-w-full flex xs:flex-col md:flex-row'>
+				<div className='w-3/6 xs:w-5/6 sm:w-5/6 md:w-3/6 p-0'>
+					<div className='min-h-full flex items-center justify-center p-24 xs:p-6'>
 						<div className='text-left'>
 							<p className='text-6xl xs:text-base sm:text-xl md:text-4xl lg:text-6xl font-bold m-3 mb-10'>
 								Create your own ritual with <i>Rítusom</i>
@@ -118,8 +167,8 @@ export default function Home() {
 						</div>
 					</div>
 				</div>
-				<div className='w-3/6 p-0'>
-					<Image src={createYourRitualImage} alt='Create your ritual image' className='p-5 xs:w-52 sm:w-72 md:w-fit lg:w-fit' />
+				<div className='w-3/6 xs:w-fit sm:w-3/6 p-0 xs:self-center md:self-start'>
+					<Image src={createYourRitualImage} alt='Create your ritual image' className='p-5 xs:w-52 sm:w-fit md:w-fit lg:w-fit' />
 				</div>
 			</div>
 
@@ -128,13 +177,13 @@ export default function Home() {
 				<div className='w-3/6 p-0'>
 					<div className='flex items-center justify-center p-24 sm:p-10 md:p-16 lg:p-24'>
 						<div className='text-left'>
-							<p className='text-4xl xs:text-sm sm:text-base md:text-2xl lg:4xl font-bold m-3 mb-10 xs:mb-5 sm:mb-5 md:mb-8 lg:mb-10'>We offer you a 10% discount for your first month with Rítusom.</p>
+							<p className='text-4xl xs:text-sm sm:text-base md:text-2xl lg:4xl font-bold mb-10 xs:mb-5 sm:mb-5 md:mb-8 lg:mb-10'>We offer you a 10% discount for your first month with Rítusom.</p>
 							<SocialIcons />
 						</div>
 					</div>
 				</div>
 				<div className='w-3/6 p-0'>
-					<div className='flex flex-col items-center justify-center p-24'>
+					<div className='flex flex-col items-center justify-center p-24 xs:p-2 md:p-24 mt-0 xs:mt-20 sm:mt-10 md:mt-0'>
 						<CustomButton text={'Enjoy Your First Ritual!'} />
 						<p className='text-lg xs:text-xs sm:text-sm md:text-base lg:text-lg font-sans font-bold mt-5'>www.ritusom.com</p>
 					</div>
