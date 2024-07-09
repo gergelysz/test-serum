@@ -1,14 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { TestButton } from './cust-button';
+import { useState } from 'react';
+import { SummaryButton, TestButton } from './cust-button';
 import { NextQuestionButton, PrevQuestionButton } from '@/components/question-move-button';
 import PropTypes from 'prop-types';
-import { Button } from './ui/button';
+import Modal from './modal';
 
 const QuestionCarousel = ({ data }) => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [selectedAnswers, setSelectedAnswers] = useState(data.map(() => []));
+	const [isOpen, setIsOpen] = useState(false);
 
 	const nextQuestion = () => {
 		setCurrentIndex((prevIndex) => (prevIndex + 1) % data.length);
@@ -37,6 +38,14 @@ const QuestionCarousel = ({ data }) => {
 		});
 	};
 
+	const openModal = () => {
+		setIsOpen(true);
+	};
+
+	const closeModal = () => {
+		setIsOpen(false);
+	};
+
 	const allAnswered = selectedAnswers.every((answers) => answers.length > 0);
 
 	return (
@@ -54,21 +63,10 @@ const QuestionCarousel = ({ data }) => {
 			</div>
 			<NextQuestionButton onClick={nextQuestion} />
 			{allAnswered && (
-				<div className='bg-white rounded shadow-lg text-center p-8 mb-16 w-full max-w-2xl'>
-					<h2 className='text-2xl font-bold mb-4'>Summary</h2>
-					{data.map((question, index) => (
-						<div key={index} className='mb-4'>
-							<h3 className='font-bold'>{question.question}</h3>
-							<ul>
-								{selectedAnswers[index].map((answer, i) => (
-									<li key={i} className='text-gray-700'>
-										{answer}
-									</li>
-								))}
-							</ul>
-						</div>
-					))}
-				</div>
+				<>
+					<SummaryButton text={'Get summary'} onClick={openModal} />
+					<Modal isOpen={isOpen} onClose={closeModal} data={data} selectedAnswers={selectedAnswers} />
+				</>
 			)}
 		</div>
 	);
