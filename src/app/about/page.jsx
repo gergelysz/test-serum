@@ -1,11 +1,11 @@
 'use client';
 
-import HomeItem3AboutUs from '@/components/home-components/home-item-3-about-us';
+import ItemAboutUs from '@/components/home-components/item-about-us';
 
 function AboutPage() {
 	return (
 		<div>
-			<HomeItem3AboutUs />
+			<ItemAboutUs />
 			<p className='p-20 font-sans text-2xl text-wrap text-left'>
 				Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores iusto deleniti sapiente. Unde provident magnam iure illo inventore aut impedit vel eaque! Earum quaerat libero praesentium dolor rem quos assumenda nisi ab impedit
 				voluptate doloribus alias, ipsum ea, itaque cupiditate iure laboriosam ex officia, nobis optio quis corporis ullam accusamus. Obcaecati aliquam fuga error saepe nesciunt accusamus, blanditiis repellendus veritatis mollitia vero a

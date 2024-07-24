@@ -5,7 +5,7 @@ import creamsAndLotionsImage from '../../../public/kerek/2.png';
 import faceSculptingAccImage from '../../../public/kerek/3.png';
 import { motion } from 'framer-motion';
 
-function HomeItem2SkinCare() {
+function ItemSkinCare() {
 	return (
 		<motion.div
 			initial={{ opacity: 0.2 }} // Initial state (hidden)
@@ -39,4 +39,4 @@ function HomeItem2SkinCare() {
 	);
 }
 
-export default HomeItem2SkinCare;
+export default ItemSkinCare;

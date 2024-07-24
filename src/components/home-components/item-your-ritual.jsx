@@ -4,7 +4,7 @@ import { CustomButton } from '../cust-button';
 import createYourRitualImage from '../../../public/teglalap/2.png';
 import { motion } from 'framer-motion';
 
-function HomeItem5YourRitual() {
+function ItemYourRitual() {
 	return (
 		<motion.div
 			initial={{ opacity: 0.2 }} // Initial state (hidden)
@@ -33,4 +33,4 @@ function HomeItem5YourRitual() {
 	);
 }
 
-export default HomeItem5YourRitual;
+export default ItemYourRitual;

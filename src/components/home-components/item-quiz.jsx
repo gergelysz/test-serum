@@ -1,9 +1,9 @@
 import React from 'react';
-import QuestionCarousel from '../question-carousel';
+import QuestionCarousel from '../question-carousel.jsx';
 import jsonQuizData from '../../../public/quiz.json';
 import { motion } from 'framer-motion';
 
-function HomeItem4Quiz() {
+function ItemQuiz() {
 	const data = JSON.parse(JSON.stringify(jsonQuizData));
 	return (
 		<motion.div
@@ -23,4 +23,4 @@ function HomeItem4Quiz() {
 	);
 }
 
-export default HomeItem4Quiz;
+export default ItemQuiz;

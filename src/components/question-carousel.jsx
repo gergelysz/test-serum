@@ -2,10 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { SummaryButton, TestButton } from './cust-button';
-import { NextQuestionButton, PrevQuestionButton } from '@/components/question-move-button';
+import { NextQuestionButton, PrevQuestionButton } from '@/components/question-move-button.jsx';
 import PropTypes from 'prop-types';
 import Modal from './modal';
-// import Cookies from 'js-cookie';
 import CacheHandler from '../../cache-handler.js';
 
 const cacheHandler = new CacheHandler();

@@ -5,15 +5,15 @@ import './styles/globals.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSwipeable } from 'react-swipeable';
 import LoadingSpinner from '@/components/loading-spinner';
-import HomeItem1Ritusom from '@/components/home-components/home-item-1-ritusom';
-import HomeItem2SkinCare from '@/components/home-components/home-item-2-skincare';
-import HomeItem3AboutUs from '@/components/home-components/home-item-3-about-us';
-import HomeItem4Quiz from '@/components/home-components/home-item-4-quiz';
-import HomeItem5YourRitual from '@/components/home-components/home-item-5-your-ritual';
-import HomeItem6Socials from '@/components/home-components/home-item-6-socials';
+import ItemRitusom from '@/components/home-components/item-ritusom';
+import ItemSkinCare from '@/components/home-components/item-skincare';
+import ItemAboutUs from '@/components/home-components/item-about-us';
+import ItemQuiz from '@/components/home-components/item-quiz';
+import ItemYourRitual from '@/components/home-components/item-your-ritual';
+import ItemSocials from '@/components/home-components/item-socials';
 import ButtonMovePages from '@/components/button-move-pages';
 
-const sections = [<HomeItem1Ritusom key={'ritusom'} />, <HomeItem2SkinCare key={'skincare'} />, <HomeItem3AboutUs key={'aboutus'} />, <HomeItem4Quiz key={'quiz'} />, <HomeItem5YourRitual key={'yourritual'} />, <HomeItem6Socials key={'socials'} />];
+const sections = [<ItemRitusom key={'ritusom'} />, <ItemSkinCare key={'skincare'} />, <ItemAboutUs key={'aboutus'} />, <ItemQuiz key={'quiz'} />, <ItemYourRitual key={'yourritual'} />, <ItemSocials key={'socials'} />];
 
 const variants = {
 	enter: (direction) => ({
