@@ -1,9 +1,10 @@
 import { Inter as FontSans, Poppins } from 'next/font/google';
-import './styles/globals.css';
+import '../styles/globals.css';
 import { cn } from '@/lib/utils';
 // import { appWithTranslation } from 'next-i18next';
 import NavigatorBurger from '@/components/navigator-burger';
 import Link from 'next/link';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
 
 const fontSans = FontSans({
 	subsets: ['latin'],
@@ -22,12 +23,6 @@ export const metadata = {
 	description: 'Lorem ipsum',
 };
 
-const pagesList = [
-	{ name: 'Home', path: '/' },
-	{ name: 'About us', path: '/about' },
-	{ name: 'Services', path: '/services' },
-];
-
 function RootLayout({ children }) {
 	return (
 		<html lang='en'>
@@ -44,6 +39,21 @@ function RootLayout({ children }) {
 						</Link>
 					))}
 				</div> */}
+				{/* <Breadcrumb>
+					<BreadcrumbList>
+						<BreadcrumbItem>
+							<BreadcrumbLink href='/'>Home</BreadcrumbLink>
+						</BreadcrumbItem>
+						<BreadcrumbSeparator />
+						<BreadcrumbItem>
+							<BreadcrumbLink href='/components'>Components</BreadcrumbLink>
+						</BreadcrumbItem>
+						<BreadcrumbSeparator />
+						<BreadcrumbItem>
+							<BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+						</BreadcrumbItem>
+					</BreadcrumbList>
+				</Breadcrumb> */}
 				<NavigatorBurger />
 				{children}
 			</body>

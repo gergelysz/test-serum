@@ -4,7 +4,7 @@ import { CustomButton } from '../cust-button';
 import aboutUsImage from '../../../public/teglalap/3.png';
 import { motion } from 'framer-motion';
 
-function HomeItem3AboutUs() {
+function ItemAboutUs() {
 	const openYouTube = () => {
 		// Define the YouTube URL
 		const youtubeUrl = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
@@ -46,4 +46,4 @@ function HomeItem3AboutUs() {
 	);
 }
 
-export default HomeItem3AboutUs;
+export default ItemAboutUs;

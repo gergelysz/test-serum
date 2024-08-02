@@ -4,7 +4,7 @@
 
 @font-face {
 	font-family: 'sans';
-	src: url('../../../public/fonts/OpenSans.ttf') format('ttf');
+	src: url('../../public/fonts/OpenSans.ttf') format('ttf');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -14,14 +14,12 @@
 		--gradient-start: 51 80% 90%;
 		--gradient-end: 79 100% 97%;
 
-		--background-image: url('../../../public/kezek.png');
+		--background-image: url('../../public/kezek.png');
 
 		--test-button-background: 222.2 84% 4.9%;
 
 		--background: 51 80% 90%;
 		--foreground: 0 0% 20%;
-
-		--navigator-hover-background: 0 0% 50%;
 
 		--card: 0 0% 100%;
 		--card-foreground: 222.2 84% 4.9%;

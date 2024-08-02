@@ -1,9 +1,9 @@
 import React from 'react';
-import SocialIcons from '../social-icons';
+import SocialIcons from '../social-icons.jsx';
 import { CustomButton } from '../cust-button';
 import { motion } from 'framer-motion';
 
-function HomeItem6Socials() {
+function ItemSocials() {
 	return (
 		<motion.div
 			initial={{ opacity: 0.2 }} // Initial state (hidden)
@@ -29,4 +29,4 @@ function HomeItem6Socials() {
 	);
 }
 
-export default HomeItem6Socials;
+export default ItemSocials;
