@@ -19,20 +19,20 @@ function ItemSkinCare() {
 			</div>
 			{/* Container for the three items with images */}
 			<div className='flex flex-row xs:flex-col sm:flex-col md:flex-row lg:flex-row w-full min-h-fit space-x-4'>
-				<div className='min-h-fit flex flex-1 flex-col items-center justify-center'>
+				<div className='min-h-fit flex flex-1 flex-col items-center justify-center mt-10 space-y-4'>
 					<Image src={serumsImage} alt='Serums image' className='w-fit xs:w-28 sm:w-36 md:w-52 lg:w-80' />
-					<p className='p-4 m-4 text-2xl xs:text-base sm:text-lg md:text-xl lg:text-2xl font-semibold'>Serums</p>
-					<p className='w-1/3 text-base xs:text-xs sm:text-xs md:text-sm lg:text-base text-center'>There is just enough space here for several lines of text. Use it well.</p>
+					<p className='m-4 text-2xl xs:text-base sm:text-lg md:text-xl lg:text-2xl font-semibold'>Serums</p>
+					<p className='text-base xs:text-xs sm:text-xs md:text-sm lg:text-base text-center ml-10 mr-10'>There is just enough space here for several lines of text. Use it well.</p>
 				</div>
-				<div className='min-h-fit flex flex-1 flex-col items-center justify-center mt-10'>
+				<div className='min-h-fit flex flex-1 flex-col items-center justify-center mt-10 space-y-4'>
 					<Image src={creamsAndLotionsImage} alt='Creams and lotions image' className='w-fit xs:w-28 sm:w-36 md:w-52 lg:w-80' />
-					<p className='p-4 m-4 text-2xl xs:text-base sm:text-lg md:text-xl lg:text-2xl font-semibold'>Creams and Lotions</p>
-					<p className='w-1/3 text-base xs:text-xs sm:text-xs md:text-sm lg:text-base text-center'>There is just enough space here for several lines of text. Use it well.</p>
+					<p className='m-4 text-2xl xs:text-base sm:text-lg md:text-xl lg:text-2xl font-semibold'>Creams and Lotions</p>
+					<p className='text-base xs:text-xs sm:text-xs md:text-sm lg:text-base text-center ml-10 mr-10'>There is just enough space here for several lines of text. Use it well.</p>
 				</div>
-				<div className='min-h-fit flex flex-1 flex-col items-center justify-center mt-10'>
+				<div className='min-h-fit flex flex-1 flex-col items-center justify-center mt-10 space-y-4'>
 					<Image src={faceSculptingAccImage} alt='Face sculpting acc image' className='w-fit xs:w-28 sm:w-36 md:w-52 lg:w-80' />
-					<p className='p-4 m-4 text-2xl xs:text-base sm:text-lg md:text-xl lg:text-2xl font-semibold'>Face Sculpting Accessories</p>
-					<p className='w-1/3 text-base xs:text-xs sm:text-xs md:text-sm lg:text-base text-center'>There is just enough space here for several lines of text. Use it well.</p>
+					<p className='m-4 text-2xl xs:text-base sm:text-lg md:text-xl lg:text-2xl font-semibold'>Face Sculpting Accessories</p>
+					<p className='text-base xs:text-xs sm:text-xs md:text-sm lg:text-base text-center ml-10 mr-10'>There is just enough space here for several lines of text. Use it well.</p>
 				</div>
 			</div>
 		</motion.div>

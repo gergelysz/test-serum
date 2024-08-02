@@ -12,4 +12,16 @@ module.exports = {
 	// 	// This could be anything, using the latest git hash
 	// 	return process.env.GIT_HASH;
 	// },
+	images: {
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: 'via.placeholder.com',
+			},
+			{
+				protocol: 'https',
+				hostname: 'images.pexels.com',
+			},
+		],
+	},
 };

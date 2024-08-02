@@ -70,7 +70,9 @@ const QuestionCarousel = ({ data }) => {
 				<div className='grid grid-cols-2 xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 xs:gap-0.5 sm:gap-1 md:gap-2 lg:gap-4 p-8 sm:p-1 md:p-4 lg:p-8'>
 					{data[currentIndex].answers.map((answer, index) => (
 						<div key={index} className='m-4 xs:m-1 sm:m-1 md:m-2 lg:m-4 p-4 xs:p-1 sm:p-2 md:p-3 lg:p-4 w-full'>
+							{/* <Reveal> */}
 							<TestButton answer={answer} isSelected={selectedAnswers[currentIndex].includes(answer)} onSelect={handleSelect} />
+							{/* </Reveal> */}
 						</div>
 					))}
 				</div>
