@@ -70,10 +70,10 @@ const BlogAdmin = () => {
 							Text is identified by every <span className='font-bold'>ENTER</span> pressed (\n char)
 						</li>
 						<li>
-							Lines ending in <span className='font-bold'>':'</span> have a bigger, bolder font
+							Lines ending in <span className='font-bold'>&apos;:&apos;</span> have a bigger, bolder font
 						</li>
 						<li>
-							Lines ending in <span className='font-bold'>'.'</span> have a normal paragraph format
+							Lines ending in <span className='font-bold'>&apos;.&apos;</span> have a normal paragraph format
 						</li>
 						<li>Every other line is considered a title or a list item, bigger font, styled list item</li>
 					</ul>
