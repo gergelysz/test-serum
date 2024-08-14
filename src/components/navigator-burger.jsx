@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import { auth } from '../lib/firebase/config.js';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
-import { getCookie, setCookie } from 'cookies-next';
+import { getCookie, setCookie, deleteCookie } from 'cookies-next';
 import toast, { Toaster } from 'react-hot-toast';
 import { FaHome, FaPen, FaShoppingCart } from 'react-icons/fa';
 import { RiPresentationFill } from 'react-icons/ri';
@@ -27,17 +27,17 @@ const NavigatorBurger = () => {
 	const handleSignOut = (e) => {
 		toast('Signed out', { duration: 1000 });
 		signOut(auth);
-		sessionStorage.removeItem('user');
-		setCookie('auth_token', '', {
-			maxAge: 0,
-		});
+		// sessionStorage.removeItem('user');
+		// setCookie('auth_token', '', {
+		// 	maxAge: 0,
+		// });
+		deleteCookie('auth_token');
 		setIsOpen((isOpen) => !isOpen);
 	};
 
 	return (
 		<div className='relative z-10'>
 			<div className='absolute top-4 right-4'>
-				<Toaster position='top-center' reverseOrder={false} />
 				<button onClick={handleToggle} aria-label='Toggle menu'>
 					<BurgerIcon />
 				</button>
@@ -87,7 +87,7 @@ const NavigatorBurger = () => {
 								Contact
 							</Link>
 						</li>
-						{!user && (
+						{!getCookie('auth_token') && (
 							<li className='p-2 hover:bg-orange-300/20 flex flex-row items-center rounded-lg'>
 								<PiSignIn />
 								<Link href='/sign-in' onClick={handleToggle} className='flex items-center p-2'>
@@ -95,7 +95,7 @@ const NavigatorBurger = () => {
 								</Link>
 							</li>
 						)}
-						{user && (
+						{getCookie('auth_token') && (
 							<li className='p-2 hover:bg-orange-300/20 flex flex-row items-center rounded-lg'>
 								<PiSignOut />
 								<Link
@@ -109,7 +109,7 @@ const NavigatorBurger = () => {
 								</Link>
 							</li>
 						)}
-						{!user && (
+						{!getCookie('auth_token') && (
 							<li className='p-2 hover:bg-orange-300/20 flex flex-row items-center rounded-lg'>
 								<IoCreate />
 								<Link href='/sign-up' onClick={handleToggle} className='flex items-center p-2'>

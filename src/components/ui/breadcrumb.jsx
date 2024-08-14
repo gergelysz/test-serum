@@ -8,7 +8,7 @@ const Breadcrumb = React.forwardRef(({ ...props }, ref) => <nav ref={ref} aria-l
 Breadcrumb.displayName = 'Breadcrumb';
 
 const BreadcrumbList = React.forwardRef(({ className, ...props }, ref) => (
-	<ol ref={ref} className={cn('flex flex-wrap items-center gap-3 xs:gap-1 sm:gap-2 md:gap-2.5 lg:gap-3  break-words text-sm xs:text-xs sm:text-sm md:text-sm lg:text-sm text-secondary', className)} {...props} />
+	<ol ref={ref} className={cn('flex flex-wrap items-center gap-3 xs:gap-1 sm:gap-2 md:gap-2.5 lg:gap-3  break-words text-sm xs:text-xs sm:text-sm md:text-sm lg:text-sm text-primary', className)} {...props} />
 ));
 BreadcrumbList.displayName = 'BreadcrumbList';
 

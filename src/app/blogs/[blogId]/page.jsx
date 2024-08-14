@@ -9,8 +9,6 @@ import Link from 'next/link';
 import Loading from '@/components/loading';
 
 const BlogPostPage = ({ params: { blogId } }) => {
-	console.log('blogId: ' + blogId);
-
 	const [post, setPost] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
@@ -53,7 +51,7 @@ const BlogPostPage = ({ params: { blogId } }) => {
 	if (error) return <div>{error}</div>;
 
 	return (
-		<div className='bg-orange-200'>
+		<div className='bg-secondary/80'>
 			<div className='max-w-6xl mx-auto'>
 				<BreadCrumb
 					items={[
@@ -65,16 +63,16 @@ const BlogPostPage = ({ params: { blogId } }) => {
 				<div className='p-5'>
 					<h1 className='text-4xl xs:text-xl lg:text-4xl font-extrabold text-primary mb-6'>{post.title}</h1>
 					<div className='flex items-center space-x-4 m-6 xs:m-3 sm:m-4 md:m-5 lg:m-6 text-sm xs:text-xs sm:text-xs md:text-sm lg:text-sm'>
-						<p className=' text-gray-600'>By {post.author}</p>
-						<span className=' text-gray-500'>•</span>
-						<p className=' text-gray-500'>{formatDate(post.publishedDate)}</p>
+						<p className=' text-[#fff]'>By {post.author}</p>
+						<span className=' text-[#fff]'>•</span>
+						<p className=' text-[#fff]/70'>{formatDate(post.publishedDate)}</p>
 					</div>
 					<Image src={post.image} alt='Blog image' width={1000} height={1000} className='mx-auto' />
 					<div className='text-primary leading-relaxed mt-16 xs:mt-4 sm:mt-8 md:mt-12 lg:mt-16'>
 						<ContentRenderer content={post.content} />
 					</div>
 					<Link href='/blogs'>
-						<p className='w-fit p-2 m-2 text-white rounded-sm bg-orange-700 hover:bg-orange-900 transition-colors'>Back to Blog list</p>
+						<p className='w-fit p-2 m-2 text-white rounded-sm bg-secondary hover:bg-[#6a7b4f] transition-colors'>Back to Blog list</p>
 					</Link>
 				</div>
 			</div>
