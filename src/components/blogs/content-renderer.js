@@ -13,7 +13,7 @@ const ContentRenderer = ({ content }) => {
 			} else {
 				return (
 					<div className='flex flex-row space-x-2 p-3'>
-						<p className='text-secondary text-xl xs:text-base md:text-lg lg:text-xl font-medium indent-16 xs:indent-4 md:indent-10 lg:indent-16'>•</p>
+						<p className='text-xl xs:text-base md:text-lg lg:text-xl font-medium indent-16 xs:indent-4 md:indent-10 lg:indent-16'>•</p>
 						<p className='text-xl xs:text-sm md:text-md lg:text-xl'>{line}</p>
 					</div>
 				);
@@ -31,21 +31,6 @@ const ContentRenderer = ({ content }) => {
 		</div>
 	);
 };
-
-/* <div key={index}>
-					{line !== null && line.trim() !== '' ? (
-						line.endsWith('.') ? (
-							<p className='text-lg xs:text-sm md:text-md lg:text-lg indent-16 xs:indent-4 md:indent-10 lg:indent-16'>{line}</p>
-						) : (
-							<div className='flex flex-row space-x-2'>
-								<p className='text-secondary text-xl xs:text-base md:text-lg lg:text-xl font-medium'>•</p>
-								<p className='text-xl xs:text-base md:text-lg lg:text-xl font-medium'>{line}</p>
-							</div>
-						)
-					) : (
-						<br />
-					)}
-				</div> */
 
 ContentRenderer.propTypes = {
 	content: PropTypes.string.isRequired,

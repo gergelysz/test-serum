@@ -63,7 +63,7 @@ const QuestionCarousel = ({ data }) => {
 	const allAnswered = selectedAnswers.every((answers) => answers.length > 0);
 
 	return (
-		<div className='relative min-h-fit min-w-full flex flex-col items-center justify-center p-8'>
+		<div className='relative min-h-32 min-w-full flex flex-col items-center justify-center p-8'>
 			<PrevQuestionButton onClick={previousQuestion} />
 			<div className='text-center p-8 xs:p-1 sm:p-4 md:p-6 lg:p-8 mb-16 xs:mb-1 sm:mb-1 md:mb-10 lg:mb-16 w-full max-w-2xl'>
 				<p className='text-4xl xs:text-lg sm:text-sm md:text-xl lg:text-3xl xl:text-4xl'>{data[currentIndex].question}</p>

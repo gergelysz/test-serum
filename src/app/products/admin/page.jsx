@@ -1,127 +1,135 @@
 'use client';
 
-import Loading from '@/components/loading';
 import React, { useEffect, useState } from 'react';
+import { doc, updateDoc, deleteDoc, collection, query, getDocs, limit, startAfter, addDoc } from 'firebase/firestore';
+import Loading from '@/components/loading';
+import EditProductDialog from '../../../components/product/edit-product-dialog.jsx';
+import ProductEditCard from '@/components/product/product-edit-card.jsx';
+import Pagination from '@/components/pagination.jsx';
+import { db } from '@/lib/firebase/config.js';
 
 const ProductsAdmin = () => {
 	const [products, setProducts] = useState([]);
+	const [selectedProduct, setSelectedProduct] = useState(null);
+	const [isDialogOpen, setIsDialogOpen] = useState(false);
 	const [loading, setLoading] = useState(true);
-	const [form, setForm] = useState({
+
+	const [currentPage, setCurrentPage] = useState(1);
+	const [totalPages, setTotalPages] = useState(1);
+	const [lastVisible, setLastVisible] = useState(null);
+	const productsPerPage = 8;
+
+	// New product state
+	const newProduct = {
 		id: '',
 		name: '',
 		description: '',
 		shortDescription: '',
 		price: '',
+		imageUrl: '',
 		variants: { sizes: [], colors: [] },
-	});
+	};
+
+	const updateProduct = async (updatedProduct) => {
+		try {
+			const productRef = doc(db, 'products', updatedProduct.id.toString());
+			console.log(productRef);
+			await updateDoc(productRef, {
+				name: updatedProduct.name,
+				description: updatedProduct.description,
+				shortDescription: updatedProduct.shortDescription,
+				price: updatedProduct.price,
+				variants: updatedProduct.variants,
+				imageUrl: updatedProduct.imageUrl,
+			});
+
+			setProducts((prevProducts) => prevProducts.map((product) => (product.id === updatedProduct.id ? updatedProduct : product)));
+		} catch (error) {
+			console.error('Error updating product:', error);
+		}
+	};
+
+	const fetchProducts = async () => {
+		const productsRef = collection(db, 'products');
+		const q = query(productsRef, limit(productsPerPage));
+
+		if (currentPage > 1 && lastVisible) {
+			const newQuery = query(productsRef, startAfter(lastVisible), limit(productsPerPage));
+			const querySnapshot = await getDocs(newQuery);
+			setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
+			setProducts(querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+		} else {
+			const querySnapshot = await getDocs(q);
+			setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
+			setProducts(querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+		}
+
+		const totalProductsSnapshot = await getDocs(productsRef);
+		setTotalPages(Math.ceil(totalProductsSnapshot.docs.length / productsPerPage));
+		setLoading(false);
+	};
+
+	const deleteProduct = async (id) => {
+		await deleteDoc(doc(db, 'products', id));
+		fetchProducts();
+	};
+
+	const addProduct = async (product) => {
+		try {
+			await addDoc(collection(db, 'products'), product);
+			fetchProducts();
+		} catch (error) {
+			console.error('Error adding product:', error);
+		}
+	};
 
 	useEffect(() => {
 		fetchProducts();
-	}, []);
-
-	const fetchProducts = async () => {
-		try {
-			const response = await fetch('/products/admin/api');
-			if (response.ok) {
-				const data = await response.json();
-				setProducts(data.products);
-			} else {
-				console.error('Failed to load products');
-			}
-		} catch (error) {
-			console.error('Failed to load products', error);
-		} finally {
-			setLoading(false);
-		}
-	};
-
-	const handleChange = (e) => {
-		const { name, value } = e.target;
-		setForm((prevForm) => ({ ...prevForm, [name]: value }));
-	};
-
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		try {
-			const response = form.id ? await fetch('/products/admin/api', { method: 'PUT', body: JSON.stringify(form) }) : await fetch('/products/admin/api', { method: 'POST', body: JSON.stringify(form) });
-			if (response.ok) {
-				fetchProducts();
-				setForm({ id: '', name: '', description: '', shortDescription: '', price: '', variants: { sizes: [], colors: [] } });
-			} else {
-				console.error('Failed to save product');
-			}
-		} catch (error) {
-			console.error('Failed to save product', error);
-		}
-	};
-
-	const handleEdit = (product) => {
-		setForm(product);
-	};
-
-	const handleDelete = async (id) => {
-		try {
-			const response = await fetch('/products/admin/api', { method: 'DELETE', body: JSON.stringify({ id }) });
-			if (response.ok) {
-				fetchProducts();
-			} else {
-				console.error('Failed to delete product');
-			}
-		} catch (error) {
-			console.error('Failed to delete product', error);
-		}
-	};
+	}, [currentPage]);
 
 	if (loading) return <Loading />;
 
+	const handleEdit = (product) => {
+		setSelectedProduct(product);
+		setIsDialogOpen(true);
+	};
+
+	const handleCloseDialog = () => {
+		setSelectedProduct(null);
+		setIsDialogOpen(false);
+	};
+
+	const handlePageChange = (page) => {
+		setCurrentPage(page);
+	};
+
+	const handleAddNewProduct = () => {
+		setSelectedProduct(newProduct);
+		setIsDialogOpen(true);
+	};
+
+	const handleSaveProduct = (product) => {
+		if (product.id) {
+			updateProduct(product);
+		} else {
+			addProduct(product);
+		}
+		handleCloseDialog();
+	};
+
 	return (
-		<div className='p-4 max-w-3xl mx-auto'>
+		<div className='p-4 max-w-5xl mx-auto'>
 			<h1 className='text-2xl font-bold mb-4'>Manage Products</h1>
-			<form onSubmit={handleSubmit} className='mb-6'>
-				<input type='hidden' name='id' value={form.id} />
-				<div className='mb-4'>
-					<label className='block mb-2'>Name</label>
-					<input type='text' name='name' value={form.name} onChange={handleChange} className='border p-2 w-full' />
-				</div>
-				<div className='mb-4'>
-					<label className='block mb-2'>Description</label>
-					<textarea name='description' value={form.description} onChange={handleChange} className='border p-2 w-full' />
-				</div>
-				<div className='mb-4'>
-					<label className='block mb-2'>Short Description</label>
-					<textarea name='shortDescription' value={form.shortDescription} onChange={handleChange} className='border p-2 w-full' />
-				</div>
-				<div className='mb-4'>
-					<label className='block mb-2'>Price</label>
-					<input type='number' name='price' value={form.price} onChange={handleChange} className='border p-2 w-full' />
-				</div>
-				<div className='mb-4'>
-					<label className='block mb-2'>Sizes</label>
-					<input type='text' name='sizes' value={form.variants.sizes.join(', ')} onChange={(e) => setForm({ ...form, variants: { ...form.variants, sizes: e.target.value.split(', ') } })} className='border p-2 w-full' />
-				</div>
-				<div className='mb-4'>
-					<label className='block mb-2'>Colors</label>
-					<input type='text' name='colors' value={form.variants.colors.join(', ')} onChange={(e) => setForm({ ...form, variants: { ...form.variants, colors: e.target.value.split(', ') } })} className='border p-2 w-full' />
-				</div>
-				<button type='submit' className='w-full bg-green-900 text-white p-2 rounded hover:bg-green-950 transition duration-200'>
-					Save
-				</button>
-			</form>
-			<div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
+			<button onClick={handleAddNewProduct} className='mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700'>
+				Add New Product
+			</button>
+			<div className='h-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
 				{products.map((product) => (
-					<div key={product.id} className='border rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow'>
-						<h2 className='text-xl font-semibold mb-2'>{product.name}</h2>
-						<p className='text-gray-700 mb-4'>{product.shortDescription}</p>
-						<p className='text-lg font-bold'>${product.price}</p>
-						<button onClick={() => handleEdit(product)} className='bg-yellow-500 text-white py-1 px-2 rounded mt-2'>
-							Edit
-						</button>
-						<button onClick={() => handleDelete(product.id)} className='bg-red-500 text-white py-1 px-2 rounded mt-2'>
-							Delete
-						</button>
-					</div>
+					<ProductEditCard key={product.id} product={product} onEdit={handleEdit} onDelete={deleteProduct} />
 				))}
+				<EditProductDialog isOpen={isDialogOpen} onClose={handleCloseDialog} product={selectedProduct} onSave={handleSaveProduct} />
 			</div>
+			<Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
 		</div>
 	);
 };

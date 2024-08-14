@@ -18,7 +18,7 @@ const SignUpPage = () => {
 			const res = await createUserWithEmailAndPassword(email, password);
 			console.log({ res });
 			console.log(res);
-			sessionStorage.setItem('user', res);
+			// sessionStorage.setItem('user', res);
 			setEmail('');
 			setPassword('');
 			// Set the authentication token as a cookie
