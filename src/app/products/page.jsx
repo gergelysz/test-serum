@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Loading from '@/components/loading.jsx';
@@ -15,7 +15,7 @@ const ProductsPage = () => {
 
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(1);
-	const [lastVisible, setLastVisible] = useState(null);
+	const lastVisibleRef = useRef(null);
 	const productsPerPage = 8;
 
 	const router = useRouter();
@@ -24,27 +24,27 @@ const ProductsPage = () => {
 		setCurrentPage(page);
 	};
 
-	const fetchProducts = async () => {
-		const productsRef = collection(db, 'products');
-		const q = query(productsRef, limit(productsPerPage));
-
-		if (currentPage > 1 && lastVisible) {
-			const newQuery = query(productsRef, startAfter(lastVisible), limit(productsPerPage));
-			const querySnapshot = await getDocs(newQuery);
-			setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
-			setProducts(querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
-		} else {
-			const querySnapshot = await getDocs(q);
-			setLastVisible(querySnapshot.docs[querySnapshot.docs.length - 1]);
-			setProducts(querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
-		}
-
-		const totalProductsSnapshot = await getDocs(productsRef);
-		setTotalPages(Math.ceil(totalProductsSnapshot.docs.length / productsPerPage));
-		setLoading(false);
-	};
-
 	useEffect(() => {
+		const fetchProducts = async () => {
+			const productsRef = collection(db, 'products');
+			const q = query(productsRef, limit(productsPerPage));
+
+			if (currentPage > 1 && lastVisibleRef.current) {
+				const newQuery = query(productsRef, startAfter(lastVisibleRef.current), limit(productsPerPage));
+				const querySnapshot = await getDocs(newQuery);
+				lastVisibleRef.current = querySnapshot.docs[querySnapshot.docs.length - 1];
+				setProducts(querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+			} else {
+				const querySnapshot = await getDocs(q);
+				lastVisibleRef.current = querySnapshot.docs[querySnapshot.docs.length - 1];
+				setProducts(querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+			}
+
+			const totalProductsSnapshot = await getDocs(productsRef);
+			setTotalPages(Math.ceil(totalProductsSnapshot.docs.length / productsPerPage));
+			setLoading(false);
+		};
+
 		fetchProducts();
 	}, [currentPage]);
 
@@ -60,8 +60,8 @@ const ProductsPage = () => {
 				<h1 className='text-2xl font-bold mb-4'>All Products</h1>
 				<div className='h-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
 					{products.map((product) => (
-						<Link href={`/products/${product.id}`}>
-							<ProductDisplayCard key={product.id} product={product} onClick={onClickHandle} />
+						<Link key={product.id} href={`/products/${product.id}`}>
+							<ProductDisplayCard product={product} onClick={onClickHandle} />
 						</Link>
 					))}
 				</div>

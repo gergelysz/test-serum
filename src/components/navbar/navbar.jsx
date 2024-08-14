@@ -38,7 +38,7 @@ const Navbar = () => {
 					},
 				}}
 			/>
-			<div className={`z-50 fixed top-0 left-0 w-full flex justify-center px-3 py-6 space-x-5 transition-colors duration-300 ${isScrolled ? 'bg-[#444f32]/70 shadow-lg' : 'bg-[#444f32]'}`}>
+			<div className={`z-50 fixed top-0 left-0 w-full flex justify-center px-3 py-6 space-x-5 transition-colors duration-300 ${isScrolled ? 'bg-[#444f32]/70 shadow-lg' : 'bg-[#444f32]'} text-base xs:text-xs sm:text-base lg:text-base`}>
 				<FlyoutLink href='/'>Home</FlyoutLink>
 				<FlyoutLink href='/products/' FlyoutContent={FlyoutProducts}>
 					Products
