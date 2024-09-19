@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Loading from '@/components/loading.jsx';
 import { collection, query, getDocs, limit, startAfter } from 'firebase/firestore';
@@ -16,9 +15,7 @@ const ProductsPage = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(1);
 	const lastVisibleRef = useRef(null);
-	const productsPerPage = 8;
-
-	const router = useRouter();
+	const productsPerPage = 12;
 
 	const handlePageChange = (page) => {
 		setCurrentPage(page);
@@ -50,23 +47,17 @@ const ProductsPage = () => {
 
 	if (loading) return <Loading />;
 
-	const onClickHandle = () => {
-		router.push('/products');
-	};
-
 	return (
-		<div className='p-4 max-w-6xl mx-auto'>
-			<div className='p-4 max-w-5xl mx-auto'>
-				<h1 className='text-2xl font-bold mb-4'>All Products</h1>
-				<div className='h-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
-					{products.map((product) => (
-						<Link key={product.id} href={`/products/${product.id}`}>
-							<ProductDisplayCard product={product} onClick={onClickHandle} />
-						</Link>
-					))}
-				</div>
-				<Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+		<div className='p-4 max-w-5xl mx-auto'>
+			<h1 className='text-2xl font-bold mb-4'>All Products</h1>
+			<div className='h-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-rows-3 gap-6'>
+				{products.map((product) => (
+					<Link key={product.id} href={`/products/${product.id}`}>
+						<ProductDisplayCard product={product} />
+					</Link>
+				))}
 			</div>
+			<Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
 		</div>
 	);
 };

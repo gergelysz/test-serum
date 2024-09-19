@@ -8,7 +8,7 @@ const ProductEditCard = ({ product, onEdit, onDelete }) => {
 			<img src={product.imageUrl || defaultPlaceholder} alt={product.name} className='w-full h-32 object-cover rounded-lg mb-4' />
 			<p className='text-lg font-bold'>{product.name}</p>
 			<p className='text-base text-gray-700 mb-2'>{product.shortDescription}</p>
-			<p className='text-gray-600 mb-10'>${product.price}</p>
+			<p className='text-gray-600 mb-10'>{product.price} RON</p>
 			<div className='absolute bottom-2 space-x-6'>
 				<button onClick={() => onEdit(product)} className='mt-2 px-4 py-2 bg-secondary/80 text-white rounded hover:bg-blue-600'>
 					Edit

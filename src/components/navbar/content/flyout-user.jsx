@@ -14,7 +14,7 @@ const FlyoutUser = () => {
 	};
 
 	return (
-		<div className='w-64 bg-secondary p-6 shadow-xl text-white/70'>
+		<div className='w-64 bg-secondary-darker p-6 shadow-xl text-white/70'>
 			<div className='mb-3 space-y-3'>
 				<h3 className='font-semibold text-white/80'>User</h3>
 				{getCookie('auth_token') && (
@@ -36,8 +36,7 @@ const FlyoutUser = () => {
 						onClick={(e) => {
 							handleSignOut(e);
 						}}
-						className='block text-sm hover:underline'
-					>
+						className='block text-sm hover:underline'>
 						Sign Out
 					</Link>
 				) : (
