@@ -18,8 +18,7 @@ function ItemAboutUs() {
 			initial={{ opacity: 0.2 }} // Initial state (hidden)
 			animate={{ opacity: 1 }} // Animation state (visible)
 			transition={{ duration: 1 }} // Duration of the animation
-			className='min-h-screen min-w-full flex flex-row'
-		>
+			className='min-h-screen min-w-full flex flex-row'>
 			{/* About us description */}
 			<div className='w-4/6'>
 				<div className='flex flex-col p-20 xs:p-10 sm:p-12 md:p-14 lg:p-20 ml-44 xs:ml-5 sm:ml-10 md:ml-32 lg:ml-44'>
@@ -28,10 +27,12 @@ function ItemAboutUs() {
 						At <i>Rítusom</i>, we believe in the power of <b>simplicity and purity</b>.
 					</p>
 					<p className='mt-5 mb-5 w-2/3 xs:w-11/12 sm:w-11/12 md:w-11/12 lg:w-2/3 text-2xl xs:text-xs sm:text-sm md:text-base lg:text-2xl'>
-						We offer <b>100% clean</b> skincare products that are tailored to your unique skin type and concerns, making it effortless to create a <b>personalized skincare ritual</b>.
+						We offer <b>100% clean</b> skincare products that are tailored to your unique skin type and concerns, making it effortless to
+						create a <b>personalized skincare ritual</b>.
 					</p>
 					<p className='mt-5 mb-5 w-2/3 xs:w-11/12 sm:w-11/12 md:w-11/12 lg:w-2/3 text-2xl xs:text-xs sm:text-sm md:text-base lg:text-2xl'>
-						Embrace the beauty of natural, effective skincare with <b>monthly packages</b> designed just for you. Your journey to <b>radiant, healthy skin starts here</b>.
+						Embrace the beauty of natural, effective skincare with <b>monthly packages</b> designed just for you. Your journey to{' '}
+						<b>radiant, healthy skin starts here</b>.
 					</p>
 					<CustomButton text={'Learn More About Us'} onClick={openYouTube} />
 				</div>

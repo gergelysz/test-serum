@@ -4,7 +4,7 @@ import { getCookie } from 'cookies-next';
 
 const FlyoutOrders = () => {
 	return (
-		<div className='w-64 bg-secondary p-6 shadow-xl text-white/70'>
+		<div className='w-64 bg-secondary-darker p-6 shadow-xl text-white/70'>
 			<div className='mb-3 space-y-3'>
 				<h3 className='font-semibold text-white/80'>Orders</h3>
 				{getCookie('auth_token') && (

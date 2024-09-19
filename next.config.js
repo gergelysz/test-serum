@@ -26,6 +26,34 @@ module.exports = {
 				protocol: 'https',
 				hostname: 'images.unsplash.com',
 			},
+			{
+				protocol: 'https',
+				hostname: 'plus.unsplash.com',
+			},
+			{
+				protocol: 'https',
+				hostname: 'www.drmax.ro',
+			},
+			{
+				protocol: 'https',
+				hostname: 'static.thcdn.com',
+			},
+			{
+				protocol: 'https',
+				hostname: 'comenzi.farmaciatei.ro',
+			},
+			{
+				protocol: 'https',
+				hostname: 'encrypted-tbn2.gstatic.com',
+			},
+			{
+				protocol: 'https',
+				hostname: 'encrypted-tbn1.gstatic.com',
+			},
+			{
+				protocol: 'https',
+				hostname: 'www.cerave.com',
+			},
 		],
 	},
 };

@@ -14,6 +14,10 @@ module.exports = {
 			},
 		},
 		extend: {
+			height: {
+				84: '21rem',
+				88: '22rem',
+			},
 			backgroundImage: {
 				serums: 'var(--background-image)',
 			},
@@ -37,6 +41,8 @@ module.exports = {
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))',
+					darker: '#58693e',
+					darkest: '#3d4a2b',
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',

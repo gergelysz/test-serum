@@ -44,14 +44,14 @@ const ProductPage = ({ params: { productId } }) => {
 				<BreadCrumb
 					items={[
 						{ label: 'Home', href: '/' },
-						{ label: 'All blogs', href: '/blogs' },
-						{ label: product.title, href: `/blogs/${productId}` },
+						{ label: 'All products', href: '/products' },
+						{ label: product.title, href: `/products/${productId}` },
 					]}
 				/>
-				<div className='p-5'>
+				<div className='p-5 space-y-6'>
 					<p className='text-4xl xs:text-xl lg:text-4xl font-extrabold text-primary mb-6'>{product.name}</p>
-					<p>{product.shortDescription}</p>
-					<Image src={product.imageUrl} alt='Blog image' width={1000} height={1000} className='mx-auto' />
+					<p className='text-sm md:text-lg'>{product.shortDescription}</p>
+					<Image src={product.imageUrl} alt='Blog image' width={1000} height={1000} className='w-1/2' />
 					{/* <div className='text-primary leading-relaxed mt-16 xs:mt-4 sm:mt-8 md:mt-12 lg:mt-16'>
 						<ContentRenderer content={product.content} />
 					</div> */}

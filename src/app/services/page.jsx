@@ -4,7 +4,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import '../../styles/globals.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useSwipeable } from 'react-swipeable';
-import LoadingSpinner from '@/components/loading-spinner';
 import ItemRitusom from '@/components/home-components/item-ritusom';
 import ItemSkinCare from '@/components/home-components/item-skincare';
 import ItemAboutUs from '@/components/home-components/item-about-us';
@@ -12,8 +11,16 @@ import ItemQuiz from '@/components/home-components/item-quiz';
 import ItemYourRitual from '@/components/home-components/item-your-ritual';
 import ItemSocials from '@/components/home-components/item-socials';
 import ButtonMovePages from '@/components/button-move-pages';
+import Loading from '@/components/loading';
 
-const sections = [<ItemRitusom key={'ritusom'} />, <ItemSkinCare key={'skincare'} />, <ItemAboutUs key={'aboutus'} />, <ItemQuiz key={'quiz'} />, <ItemYourRitual key={'yourritual'} />, <ItemSocials key={'socials'} />];
+const sections = [
+	<ItemRitusom key={'ritusom'} />,
+	<ItemSkinCare key={'skincare'} />,
+	<ItemAboutUs key={'aboutus'} />,
+	<ItemQuiz key={'quiz'} />,
+	<ItemYourRitual key={'yourritual'} />,
+	<ItemSocials key={'socials'} />,
+];
 
 const variants = {
 	enter: (direction) => ({
@@ -97,7 +104,7 @@ const ServicesPage = () => {
 	return (
 		<div>
 			{isLoading ? (
-				<LoadingSpinner />
+				<Loading />
 			) : (
 				<div {...swipeHandlers} className='relative w-screen h-screen overflow-hidden'>
 					<AnimatePresence initial={true} custom={direction}>
@@ -112,8 +119,7 @@ const ServicesPage = () => {
 								y: { type: 'spring', stiffness: 300, damping: 30 },
 								opacity: { duration: 0.2 },
 							}}
-							className='absolute top-0 left-0 w-full h-full flex items-center justify-center'
-						>
+							className='absolute top-0 left-0 w-full h-full flex items-center justify-center'>
 							{sections.map((Section, idx) => (
 								<div key={idx} className={`w-full h-full ${index === idx ? '' : 'hidden'}`}>
 									{Section}

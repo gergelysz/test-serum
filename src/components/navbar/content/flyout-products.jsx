@@ -4,7 +4,7 @@ import { getCookie } from 'cookies-next';
 
 const FlyoutProducts = () => {
 	return (
-		<div className='w-64 bg-secondary p-6 shadow-xl text-white/70 flex flex-col'>
+		<div className='w-64 bg-secondary-darker p-6 shadow-xl text-white/70 flex flex-col'>
 			<div className='mb-3 space-y-3'>
 				<p className='font-semibold text-white/80'>Products</p>
 				<Link href='/products/nails-care/' className='block text-sm hover:underline'>
@@ -52,7 +52,9 @@ const FlyoutProducts = () => {
 					More info
 				</Link>
 			</div>
-			<button className='w-full rounded-lg border-2 border-neutral-950 px-4 py-2 font-semibold transition-colors hover:bg-neutral-950 hover:text-white'>Contact sales</button>
+			<button className='w-full rounded-lg border-2 border-neutral-950 px-4 py-2 font-semibold transition-colors hover:bg-neutral-950 hover:text-white'>
+				Contact sales
+			</button>
 		</div>
 	);
 };

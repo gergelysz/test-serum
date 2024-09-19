@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const FlyoutAbout = () => {
 	return (
-		<div className='w-64 bg-secondary p-6 shadow-xl text-white/70'>
+		<div className='w-64 bg-secondary-darker p-6 shadow-xl text-white/70'>
 			<div className='mb-3 space-y-3'>
 				<h3 className='font-semibold text-white/80'>Essential oils</h3>
 				<Link href='/blogs/essential-oils/' className='block text-sm hover:underline'>
